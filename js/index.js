@@ -14,12 +14,6 @@ class Dulces {
         this.cantidad = 1;
         this.precioFinal = dulce.precio
     }
-    agregarUnidad() {
-        this.cantidad++;
-    }
-    quitarUnidad() {
-        this.cantidad--;
-    }
     precioTotal() {
         this.precioFinal = this.precio * this.cantidad;
     }
@@ -100,7 +94,7 @@ function ordenDeCompra() {
         carrito.push(new Dulces(dulce[eleccion]));
         alert(`Se agregó al carrito el dulce "${dulce[8].nombre}"`);
     } else {
-        alert("muchas gracias")
+        alert("Gracias, vuelva pronto");
     }
 }
 
@@ -131,9 +125,20 @@ precioFinal = calcularPrecioFinal();
 alert(`El total a abonar por la compra realizada es de $${precioFinal}`);
 
 // imprimo en consola los dulces seleccionados para la compra
+console.log("ARRAY CARRITO");
 console.log(carrito);
+
+// método find utiilizado para filtrar por nombre en el array carrito
+console.log("ARRAY CARRITO ORDENADO FILTRANDO DULCES CON EL NOMBRE CHOCOLATE");
+const chocolate = carrito.find((el) => el.nombre === "Chocolate");
+console.log(chocolate);
+
+// método filter utilizado para filtrar por precios mayores a 150 en el array carrito
+console.log("ARRAY CARRITO IMPRIMIENDO TODO DULCE MAYOR A 150 EN SU PRECIO");
+const mayorQuePrecio = carrito.filter((el) => el.precio > 150);
+console.log(mayorQuePrecio);
 
 // ordeno el array por precio
 console.log("ARRAY DULCE ORDENADO DEL MENOR PRECIO AL MAYOR")
-let carritoOrdenado = carrito.sort((a, b) => a.precio - b.precio);
+let carritoOrdenado = dulce.sort((a, b) => a.precio - b.precio);
 console.log(carritoOrdenado);
