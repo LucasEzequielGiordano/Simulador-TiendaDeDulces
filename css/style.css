@@ -25,3 +25,10 @@ img {
 #carrito {
     font-size: 25px;
 }
+
+.contenedorCantidad {
+    display: flex;
+    justify-content: space-evenly;
+    height: 50px;
+    align-items: center;
+}

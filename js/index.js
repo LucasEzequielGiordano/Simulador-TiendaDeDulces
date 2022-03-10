@@ -17,19 +17,17 @@ class Dulce {
 
 // declaracion de arrays
 let nuevoDulce;
-const dulces = [
-    new Dulce("Dos Corazones", 80, "./images/Dos-Corazones.jpg"),
-    new Dulce("Mogul Gomitas", 60, "./images/Mogul-Gomitas.jpg"),
-    new Dulce("Ferrero Rocher", 250, "./images/Ferrero-Rocher.jpg"),
-    new Dulce("Shot Bloque Chocolate", 160, "./images/Shot-Bloque-Chocolate.webp"),
-    new Dulce("Kinder Chocolate", 255, "./images/Kinder-Chocolate.jpeg"),
-    new Dulce("Jorgito Alfajor", 85, "./images/Jorgito-Alfajor.jpg"),
-    new Dulce("Milka Chocolate", 310, "./images/Milka-Chocolate.png"),
-    new Dulce("Pepitos Alfajor", 150, "./images/Pepitos-Alfajor.jpg"),
-    new Dulce("Bon o Bon", 55, "./images/Bon-o-Bon.jpg")
-];
-
+const dulces = [];
 let carrito = [];
+dulces.push(new Dulce("Dos Corazones", 80, "./images/Dos-Corazones.jpg"));
+dulces.push(new Dulce("Mogul Gomitas", 60, "./images/Mogul-Gomitas.jpg"));
+dulces.push(new Dulce("Ferrero Rocher", 250, "./images/Ferrero-Rocher.jpg"));
+dulces.push(new Dulce("Shot Bloque Chocolate", 160, "./images/Shot-Bloque-Chocolate.webp"));
+dulces.push(new Dulce("Kinder Chocolate", 255, "./images/Kinder-Chocolate.jpeg"));
+dulces.push(new Dulce("Jorgito Alfajor", 85, "./images/Jorgito-Alfajor.jpg"));
+dulces.push(new Dulce("Milka Chocolate", 310, "./images/Milka-Chocolate.png"));
+dulces.push(new Dulce("Pepitos Alfajor", 150, "./images/Pepitos-Alfajor.jpg"));
+dulces.push(new Dulce("Bon o Bon", 55, "./images/Bon-o-Bon.jpg"));
 
 // inicio del simulador
 // validacion de la eleccion del cliente
@@ -49,11 +47,11 @@ function ordenDeCompra(eleccion) {
 
 // opcion de continuar comprando o irse
 // en caso de continuar, sigue pusheando al carrito
-function continuarCompra() {
-    // let eleccion = parseInt(prompt(`Elija que dulces va a ordenar:\n 0. "${dulces[0].nombre}" $${dulces[0].precio}\n 1. "${dulces[1].nombre}" $${dulces[1].precio}\n 2. "${dulces[2].nombre}" $${dulces[2].precio}\n 3. "${dulces[3].nombre}" $${dulces[3].precio}\n 4. "${dulces[4].nombre}" $${dulces[4].precio}\n 5. "${dulces[5].nombre}" $${dulces[5].precio}\n 6. "${dulces[6].nombre}" $${dulces[6].precio}\n 7. "${dulces[7].nombre}" $${dulces[7].precio}\n 8. "${dulces[8].nombre}" $${dulces[8].precio}\n 9. Irse.`));
-    eleccion = numeroValidacion(eleccion);
-    ordenDeCompra(eleccion);
-}
+// function continuarCompra() {
+// let eleccion = parseInt(prompt(`Elija que dulces va a ordenar:\n 0. "${dulces[0].nombre}" $${dulces[0].precio}\n 1. "${dulces[1].nombre}" $${dulces[1].precio}\n 2. "${dulces[2].nombre}" $${dulces[2].precio}\n 3. "${dulces[3].nombre}" $${dulces[3].precio}\n 4. "${dulces[4].nombre}" $${dulces[4].precio}\n 5. "${dulces[5].nombre}" $${dulces[5].precio}\n 6. "${dulces[6].nombre}" $${dulces[6].precio}\n 7. "${dulces[7].nombre}" $${dulces[7].precio}\n 8. "${dulces[8].nombre}" $${dulces[8].precio}\n 9. Irse.`));
+// eleccion = numeroValidacion(eleccion);
+// ordenDeCompra(eleccion);
+// }
 
 // se calcula el total de todo lo pedido por el cliente
 function calcularPrecioFinal() {
@@ -63,8 +61,8 @@ function calcularPrecioFinal() {
 }
 
 // invocacion de funciones
-let respuesta = true;
-while (respuesta) {
-    continuarCompra();
-    respuesta = confirm("¿Desea agregar otro dulce al carrito?");
-}
+// let respuesta = true;
+// respuesta = confirm("¿Desea agregar otro dulce al carrito?");
+// while (respuesta) {
+// continuarCompra();
+// }

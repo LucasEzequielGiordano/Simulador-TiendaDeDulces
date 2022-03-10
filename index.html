@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <title>Simulador - Tienda De Dulces</title>
 </head>
 
-<body>
+<body onload="init()">
     <!-- acá van los productos a imprimir -->
-    <div id="contenedor"></div>
-    
+    <div class="d-flex justify-content-around row-cols-4" id="contenedor"></div>
     <!-- acá va lo impreso por el usuario -->
-    <div id="carrito">Productos comprados:</div>
+    <div class="text-align" id="carrito">Productos comprados:</div>
     <script src="js/index.js"></script>
     <script src="js/dom.js"></script>
 </body>
+
 </html>
