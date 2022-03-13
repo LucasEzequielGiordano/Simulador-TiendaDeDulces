@@ -34,16 +34,16 @@ function elementosEnHTML(dulces) {
                 <li><button class="btn btn-danger" id="restar${dulces.id}"> - </button>
                 <span>Cantidad: <span id="cantidad${dulces.id}">1</span></span>
                 <button class="btn btn-success" id="aumentar${dulces.id}"> + </button></li>
-                <li id="valor${dulces.precio}">$${dulces.precio}</li>
+                <li id="valorTotal${dulces.precio}">$${dulces.precio}</li>
                 <li><button class="btn btn-dark">COMPRAR</button></li>
-            </ul>
-            `;
+                </ul>
+                `;
             imprimir.appendChild(listaCarrito);
             // EVENTO DE SUMAR PRODUCTOS Y SU VALOR
             let aumentar = document.getElementById(`aumentar${dulces.id}`);
             let cantidad = document.getElementById(`cantidad${dulces.id}`);
             let contador = 0;
-            let valorTotal = document.getElementById(`valor${dulces.precio}`);
+            let valorTotal = document.getElementById(`valorTotal${dulces.precio}`);
             aumentar.addEventListener("click", () => {
                 contador++;
                 cantidad.textContent = contador;
@@ -56,6 +56,8 @@ function elementosEnHTML(dulces) {
                 cantidad.textContent = contador;
                 valorTotal.textContent = contador * `${dulces.precio}`;
             });
+        }, {
+            once: true
         });
     });
 }
