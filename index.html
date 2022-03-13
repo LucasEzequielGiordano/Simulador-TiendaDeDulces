@@ -12,10 +12,32 @@
 </head>
 
 <body onload="init()">
-    <!-- acá van los productos a imprimir -->
-    <div class="d-flex justify-content-around row-cols-4" id="contenedor"></div>
-    <!-- acá va lo impreso por el usuario -->
-    <div class="text-align" id="carrito">Productos comprados:</div>
+    <header>
+        <h1>Productos</h1>
+        <div class="containerHeader">
+            <!-- acá van los productos a imprimir -->
+            <div class="d-flex justify-content-around row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="contenedor">
+
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- acá va lo impreso por el usuario -->
+        <div id="contenedor" style="display: flex; flex-wrap: wrap; margin-left: 5%"></div>
+        <div class="text-center" id="carrito">Productos comprados:</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>PRODUCTO</th>
+                    <th>CANTIDAD</th>
+                    <th>PRECIO</th>
+                    <th>COMPRAR</th>
+                </tr>
+            </thead>
+            <tbody id="bodyTabla">
+            </tbody>
+        </table>
+    </main>
     <script src="js/index.js"></script>
     <script src="js/dom.js"></script>
 </body>
