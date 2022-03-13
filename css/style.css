@@ -36,3 +36,21 @@ img {
     height: 50px;
     align-items: center;
 }
+
+ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+
+#divCarrito ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    list-style: none;
+}
+
+li {
+    display: flex;
+}

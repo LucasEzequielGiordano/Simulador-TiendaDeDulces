@@ -24,19 +24,17 @@
     <main>
         <!-- acá va lo impreso por el usuario -->
         <div id="contenedor" style="display: flex; flex-wrap: wrap; margin-left: 5%"></div>
-        <div class="text-center" id="carrito">Productos comprados:</div>
-        <table>
-            <thead>
-                <tr>
-                    <th>PRODUCTO</th>
-                    <th>CANTIDAD</th>
-                    <th>PRECIO</th>
-                    <th>COMPRAR</th>
-                </tr>
-            </thead>
-            <tbody id="bodyTabla">
-            </tbody>
-        </table>
+        <div class="text-center" id="carrito">Productos Del Carrito:</div>
+        <div>
+            <ul>
+                <li>PRODUCTO</li>
+                <li>CANTIDAD</li>
+                <li>VALOR TOTAL</li>
+                <li>COMPRAR</li>
+            </ul>
+            <div id="divCarrito">
+            </div>
+        </div>
     </main>
     <script src="js/index.js"></script>
     <script src="js/dom.js"></script>
