@@ -1,7 +1,8 @@
 // DECLARACION DE FUNCIONES
-// FUNCION DE INICIO
+// FUNCION DE INICIO DE LECTURA DE CODIGO
 function init() {
-    carrito = carritoEnLocalStorage();
+    let listadoCarrito = cargarListado();
+    mostrarListado(listadoCarrito);
     elementosEnHTML(dulces);
 }
 
@@ -21,13 +22,14 @@ function elementosEnHTML(dulces) {
         </div>
         `;
         contenedor.appendChild(card);
-
-
+        
         // EVENTO DE AGREGAR AL CARRITO
         let agregarAlCarrito = document.getElementById(`agregar${dulces.id}`);
         agregarAlCarrito.addEventListener("click", () => {
             carrito.push(new Dulce(dulces.id, dulces.nombre, dulces.precio, dulces.images));
-            localStorage.setItem("carritoStorage", JSON.stringify(carrito));
+            // AL CLICKEAR SOBRE UN BOTON DE AGREGAR AL CARRITO EN ALGUNA CARD
+            // MANDO AL LOCALSTORAGE EL OBJETO SELECCIONADO
+            localStorage.setItem("carritoEnStorage", JSON.stringify(carrito));
 
 
             // IMPRIMO EN EL CARRITO LOS PRODUCTOS SELECCIONADOS
@@ -74,41 +76,34 @@ function elementosEnHTML(dulces) {
             let eliminarObjetoDeLista = document.getElementById(`eliminar${dulces.id}`);
             eliminarObjetoDeLista.addEventListener("click", () => {
                 imprimir.removeChild(listaCarrito);
-                // if()
             });
-
-            // // EVENTO SUMAR PRECIO FINAL DEL CARRITO
-            // let comprarCarrito = document.getElementById("comprarCarrito");
-            // comprarCarrito.addEventListener("click", () => {
-            //     let sumaCarrito = document.getElementById("sumaTotalCarrito");
-            //     // sumaCarrito.textContent = 
-            // });
-        }, {
-            // CODIGO UTILIZADO PARA QUE NO SE ME EJECUTE VARIAS VECES AL CLICKEAR
-            // UN PRODUCTO EN EL CARRITO 
-            // NO PUEDE VOLVER A AGREGAR DESPUES DE ELIMINAR ERROR
-            once: true
         });
     });
 }
 
-// FUNCION PARA EL LOCAL STORAGE
-function carritoEnLocalStorage() {
-    let contenidoEnStorage = JSON.parse(localStorage.getItem("carritoStorage"));
-    // RETORNO EL ARRAY DEL CARRITO EN CASO DE EXISTIR
-    if (contenidoEnStorage) {
-        let arrayStorage = [];
-        for (let i = 0; i < contenidoEnStorage.length; i++) {
-            let dulces = new Dulce(
-                contenidoEnStorage[i]
-            );
-            arrayStorage.push(dulces);
-        }
-        return arrayStorage;
+// FUNCION PARA CARGAR DESDE EL LOCALSTORAGE EL LISTADO
+function cargarListado() {
+    let listadoCarrito = JSON.parse(localStorage.getItem("carritoEnStorage"));
+    if (listadoCarrito == null) {
+        return [];
     }
-    // SI NO EXISTE, DEVUELVO UN ARRAY VACÍO
-    return [];
+    return listadoCarrito;
 }
 
-// RESETEO DE LOCALSTORAGE
-// localStorage.clear()
+// FUNCION PARA MOSTRAR EL LISTADO DEL CARRITO DE VUELTA
+function mostrarListado(listadoCarrito) {
+    listadoCarrito.forEach((dulces) => {
+        let imprimir = document.getElementById("divCarrito");
+        let listaCarrito = document.createElement("ul");
+        listaCarrito.innerHTML += `
+    <li>${dulces.nombre}</li>
+    <li><button class="btn btn-danger" id="restar${dulces.id}"> - </button>
+    <span>Cantidad: <span id="cantidad${dulces.id}">1</span></span>
+    <button class="btn btn-success" id="aumentar${dulces.id}"> + </button></li>
+    <li id="valorTotal${dulces.precio}">$${dulces.precio}</li>
+    <li><button class="btn btn-danger" id="eliminar${dulces.id}">ELIMINAR</button></li>
+    `;
+        imprimir.appendChild(listaCarrito);
+    });
+    return JSON.parse(localStorage.getItem("carritoEnStorage"));
+}
