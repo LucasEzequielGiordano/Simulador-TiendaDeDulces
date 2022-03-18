@@ -6,12 +6,12 @@
  * 5. Imprimir en consola todo el array "dulces" ordenado de menor a mayor por precio
  */
 
-// ORDEN DEL CÓDIGO:
-// CLASE DE OBJETO
-// ARRAYS
-// PUSH A LOS ARRAYS
+// Orden del codigo:
+// Clase de objeto
+// Arrays
+// Push a los arrays
 
-// DECLARACION DE OBJETOS
+// Declaracion de objetos
 class Dulce {
     constructor(id, nombre, precio, images) {
         this.id = id;
@@ -21,12 +21,12 @@ class Dulce {
     }
 }
 
-// DECLARACION DE ARRAYS
+// Declaracion de arrays
 let nuevoDulce;
 const dulces = [];
 let carrito = [];
 
-// PUSH A LOS ARRAYS
+// Push  a los arrays
 dulces.push(new Dulce(0, "Dos Corazones", 80, "./images/Dos-Corazones.jpg"));
 dulces.push(new Dulce(1, "Mogul Gomitas", 60, "./images/Mogul-Gomitas.jpg"));
 dulces.push(new Dulce(2, "Ferrero Rocher", 250, "./images/Ferrero-Rocher.jpg"));

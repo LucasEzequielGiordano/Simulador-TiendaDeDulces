@@ -1,6 +1,5 @@
-// DECLARACION DE FUNCIONES 
-// FUNCION PARA IMPRIMIR CARDS DE CARRITO
-// RECORRO EL ARRAY DULCES Y LO IMPRIMO EN FORMA DE CARDS
+// Declaracion de funciones
+// Funcion donde recorro el array dulces y lo imprimo en cards
 function elementosEnHTML(dulces) {
     let contenedor = document.getElementById("contenedor");
     dulces.forEach(dulces => {
@@ -17,13 +16,33 @@ function elementosEnHTML(dulces) {
         `;
         contenedor.appendChild(card);
 
-        // EVENTO DE AGREGAR AL CARRITO
-        // AL HACER CLICK SOBRE EL BOTON, PUSHEO AL ARRAY CARRITO 
-        // MANDO AL LOCALSTORAGE EL OBJETO SELECCIONADO
-        // LUEGO IMPRIMO EN EL CARRITO LOS PRODUCTOS SELECCIONADOS
+        // Evento de agregar card al carrito
+        // Al hacer click sobre el boton, pusheo al carrito 
+        // Mando al localStorage el objeto seleccionado
+        // Luego imprimo en el carrito los productos seleccionados
         let agregarAlCarrito = document.getElementById(`agregar${dulces.id}`);
         agregarAlCarrito.addEventListener("click", () => {
-            carrito.push(new Dulce(dulces.id, dulces.nombre, dulces.precio, dulces.images));
+            // Validación de código
+            // Busco en el id de cada producto seleccionado
+            // 
+            let idProducto = dulces.id
+            let dulceEnCarrito = carrito.find((elemento) => {
+                if (elemento.id == idProducto) {
+                    return true;
+                }
+            });
+
+            if (dulceEnCarrito) {
+                let index = carrito.findIndex((elemento) => {
+                    if (elemento.id === dulceEnCarrito.id) {
+                        return true;
+                    }
+                });
+
+                carrito[index].aumentar;
+            } else {
+                carrito.push(new Dulce(dulces.id, dulces.nombre, dulces.precio, dulces.images));
+            }
             localStorage.setItem("carritoEnStorage", JSON.stringify(carrito));
             let imprimir = document.getElementById("divCarrito");
             let listaCarrito = document.createElement("ul");
@@ -37,9 +56,9 @@ function elementosEnHTML(dulces) {
             `;
             imprimir.appendChild(listaCarrito);
 
-            // EVENTO DE SUMAR PRODUCTOS Y SU VALOR
-            // TOMO EL VALOR DE LA CANTIDAD "1" DEL DULCE SELECCIONADO
-            // A ESTE LE SUMO EL PRECIO A MEDIDA QUE LA CANTIDAD AUMENTA
+            // Evento de sumar productos y su valor
+            // Tomo el valor de la cantidad "1" del dulce seleccionado
+            // Le sumo el precio a medida que aumente la cantidad
             let aumentar = document.getElementById(`aumentar${dulces.id}`);
             let cantidad = document.getElementById(`cantidad${dulces.id}`);
             let contador = 0;
@@ -50,9 +69,9 @@ function elementosEnHTML(dulces) {
                 valorTotal.textContent = contador * `${dulces.precio}`;
             });
 
-            // EVENTO DE RESTAR PRODUCTOS Y SU VALOR
-            // LO MISMO QUE EN EL EVENTO SUMA SOLO QUE RESTANDO
-            // AL LLEGAR A 0 SE ELIMINA DEL CARRITO
+            // Evento de restar productos y su valor
+            // Al restar la cantidad, se resta el precio 
+            // Al llegar a 0 la cantidad, se elimina el objeto del carrito
             let restar = document.getElementById(`restar${dulces.id}`);
             restar.addEventListener("click", () => {
                 if (contador <= 0) {
@@ -64,9 +83,9 @@ function elementosEnHTML(dulces) {
                 }
             });
 
-            // EVENTO DE ELIMINAR PRODUCTOS DEL CARRITO
-            // AL HACER CLICK SOBRE EL BOTON ROJO
-            // SE ELIMINARÁ EL PRODUCTO DEL CARRITO
+            // Evento de eliminar productos del carrito
+            // Al haccer click sobre el botón rojo
+            // Se eliminará el producto del carrito
             let eliminarObjetoDeLista = document.getElementById(`eliminar${dulces.id}`);
             eliminarObjetoDeLista.addEventListener("click", () => {
                 imprimir.removeChild(listaCarrito);
@@ -75,9 +94,9 @@ function elementosEnHTML(dulces) {
     });
 }
 
-// FUNCION PARA CARGAR EL CARRITO DESDE LOCALSTORAGE
-// EN CASO DE QUE NO HAYA NADA "NULL" RETORNARÁ UN ARRAY VACÍO
-// SINO RETORNARÁ EL LISTADOCARRITO
+// Función para cargar el carrito desde el localStorage
+// En caso que no haya nada "Null" retoranará un array vacío
+// Sino retornará el listado carrito
 function cargarListado() {
     let listadoCarrito = JSON.parse(localStorage.getItem("carritoEnStorage"));
     if (listadoCarrito == null) {
@@ -95,9 +114,35 @@ function cargarListado() {
     <li><button class="btn btn-danger" id="eliminar${dulces.id}">ELIMINAR</button></li>
     `;
         imprimir.appendChild(listaCarrito);
+
+        // Reutilizo los botones de eventos
+        let aumentar = document.getElementById(`aumentar${dulces.id}`);
+        let cantidad = document.getElementById(`cantidad${dulces.id}`);
+        let contador = 0;
+        let valorTotal = document.getElementById(`valorTotal${dulces.precio}`);
+        aumentar.addEventListener("click", () => {
+            contador++;
+            cantidad.textContent = contador;
+            valorTotal.textContent = contador * `${dulces.precio}`;
+        });
+
+        let restar = document.getElementById(`restar${dulces.id}`);
+        restar.addEventListener("click", () => {
+            if (contador <= 0) {
+                imprimir.removeChild(listaCarrito);
+            } else {
+                contador--;
+                cantidad.textContent = contador;
+                valorTotal.textContent = contador * `${dulces.precio}`;
+            }
+        });
+
+        let eliminarObjetoDeLista = document.getElementById(`eliminar${dulces.id}`);
+        eliminarObjetoDeLista.addEventListener("click", () => {
+            imprimir.removeChild(listaCarrito);
+        });
     });
     return listadoCarrito;
-    // return JSON.parse(localStorage.getItem("carritoEnStorage"));
 }
 
 // INVOCACION DE FUNCIONES
