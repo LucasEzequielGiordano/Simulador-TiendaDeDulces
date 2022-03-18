@@ -7,8 +7,9 @@
  */
 
 // ORDEN DEL CÓDIGO:
-// OBJETOS
+// CLASE DE OBJETO
 // ARRAYS
+// PUSH A LOS ARRAYS
 
 // DECLARACION DE OBJETOS
 class Dulce {
@@ -24,6 +25,8 @@ class Dulce {
 let nuevoDulce;
 const dulces = [];
 let carrito = [];
+
+// PUSH A LOS ARRAYS
 dulces.push(new Dulce(0, "Dos Corazones", 80, "./images/Dos-Corazones.jpg"));
 dulces.push(new Dulce(1, "Mogul Gomitas", 60, "./images/Mogul-Gomitas.jpg"));
 dulces.push(new Dulce(2, "Ferrero Rocher", 250, "./images/Ferrero-Rocher.jpg"));
