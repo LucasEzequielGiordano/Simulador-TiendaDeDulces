@@ -30,14 +30,12 @@ function elementosEnHTML(dulces) {
                     return true;
                 }
             });
-
             if (dulceEnCarrito) {
                 let index = carrito.findIndex((elemento) => {
                     if (elemento.id === dulceEnCarrito.id) {
                         return true;
                     }
                 });
-
                 carrito[index].aumentar;
             } else {
                 carrito.push(new Dulce(dulces.id, dulces.nombre, dulces.precio, dulces.images));
@@ -48,7 +46,7 @@ function elementosEnHTML(dulces) {
             listaCarrito.innerHTML = `
             <li>${dulces.nombre}</li>
             <li><button class="btn btn-danger" id="restar${dulces.id}"> - </button>
-            <span>Cantidad: <span id="cantidad${dulces.id}"> </span></span>
+            <span>Cantidad: <span id="cantidad${dulces.id}">${dulces.cantidad}</span></span>
             <button class="btn btn-success" id="aumentar${dulces.id}"> + </button></li>
             <li id="valorTotal${dulces.precio}">$${dulces.precio}</li>
             <li><button class="btn btn-danger" id="eliminar${dulces.id}">ELIMINAR</button></li>
@@ -95,7 +93,8 @@ function elementosEnHTML(dulces) {
     });
 }
 
-
+// Funcion para eliminar el elemento seleccionado del storage
+// Se lo borra y luego se vuelve a guardar en el storage sin este
 function borrarElementoStorage() {
     let carritoStorage = JSON.parse(localStorage.getItem("carritoEnStorage"));
     let indexStorage = carritoStorage.findIndex(element => element.id === dulces.id);
@@ -118,7 +117,7 @@ function cargarListado() {
         listaCarrito.innerHTML = `
     <li>${dulces.nombre}</li>
     <li><button class="btn btn-danger" id="restar${dulces.id}"> - </button>
-    <span>Cantidad: <span id="cantidad${dulces.id}"> </span></span>
+    <span>Cantidad: <span id="cantidad${dulces.id}">${dulces.cantidad}</span></span>
     <button class="btn btn-success" id="aumentar${dulces.id}"> + </button></li>
     <li id="valorTotal${dulces.precio}">$${dulces.precio}</li>
     <li><button class="btn btn-danger" id="eliminar${dulces.id}">ELIMINAR</button></li>

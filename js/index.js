@@ -18,6 +18,7 @@ class Dulce {
         this.nombre = nombre;
         this.precio = precio;
         this.images = images;
+        this.cantidad = 1;
     }
 }
 
