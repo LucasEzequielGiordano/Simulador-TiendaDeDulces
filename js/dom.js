@@ -4,7 +4,7 @@ function elementosEnHTML(dulces) {
     let contenedor = document.getElementById("contenedor");
     dulces.forEach(dulces => {
         let card = document.createElement("div");
-        card.innerHTML += `
+        card.innerHTML = `
         <div class="card d-flex .justify-content-center" style="width: 18rem;">
             <img src="${dulces.images}" class="card-img-top" alt=" ">
             <div class="card-body d-flex flex-column justify-content-center">
@@ -24,7 +24,6 @@ function elementosEnHTML(dulces) {
         agregarAlCarrito.addEventListener("click", () => {
             // Validación de código
             // Busco en el id de cada producto seleccionado
-            // 
             let idProducto = dulces.id
             let dulceEnCarrito = carrito.find((elemento) => {
                 if (elemento.id == idProducto) {
@@ -46,10 +45,10 @@ function elementosEnHTML(dulces) {
             localStorage.setItem("carritoEnStorage", JSON.stringify(carrito));
             let imprimir = document.getElementById("divCarrito");
             let listaCarrito = document.createElement("ul");
-            listaCarrito.innerHTML += `
+            listaCarrito.innerHTML = `
             <li>${dulces.nombre}</li>
             <li><button class="btn btn-danger" id="restar${dulces.id}"> - </button>
-            <span>Cantidad: <span id="cantidad${dulces.id}">1</span></span>
+            <span>Cantidad: <span id="cantidad${dulces.id}"> </span></span>
             <button class="btn btn-success" id="aumentar${dulces.id}"> + </button></li>
             <li id="valorTotal${dulces.precio}">$${dulces.precio}</li>
             <li><button class="btn btn-danger" id="eliminar${dulces.id}">ELIMINAR</button></li>
@@ -76,6 +75,7 @@ function elementosEnHTML(dulces) {
             restar.addEventListener("click", () => {
                 if (contador <= 0) {
                     imprimir.removeChild(listaCarrito);
+                    borrarElementoStorage();
                 } else {
                     contador--;
                     cantidad.textContent = contador;
@@ -89,9 +89,19 @@ function elementosEnHTML(dulces) {
             let eliminarObjetoDeLista = document.getElementById(`eliminar${dulces.id}`);
             eliminarObjetoDeLista.addEventListener("click", () => {
                 imprimir.removeChild(listaCarrito);
+                borrarElementoStorage();
             });
         });
     });
+}
+
+
+function borrarElementoStorage() {
+    let carritoStorage = JSON.parse(localStorage.getItem("carritoEnStorage"));
+    let indexStorage = carritoStorage.findIndex(element => element.id === dulces.id);
+    carritoStorage.splice(indexStorage, 1);
+    let reingresoStorage = JSON.stringify(carritoStorage);
+    localStorage.setItem("carritoEnStorage", reingresoStorage)
 }
 
 // Función para cargar el carrito desde el localStorage
@@ -105,10 +115,10 @@ function cargarListado() {
     listadoCarrito.forEach((dulces) => {
         let imprimir = document.getElementById("divCarrito");
         let listaCarrito = document.createElement("ul");
-        listaCarrito.innerHTML += `
+        listaCarrito.innerHTML = `
     <li>${dulces.nombre}</li>
     <li><button class="btn btn-danger" id="restar${dulces.id}"> - </button>
-    <span>Cantidad: <span id="cantidad${dulces.id}">1</span></span>
+    <span>Cantidad: <span id="cantidad${dulces.id}"> </span></span>
     <button class="btn btn-success" id="aumentar${dulces.id}"> + </button></li>
     <li id="valorTotal${dulces.precio}">$${dulces.precio}</li>
     <li><button class="btn btn-danger" id="eliminar${dulces.id}">ELIMINAR</button></li>
@@ -130,6 +140,7 @@ function cargarListado() {
         restar.addEventListener("click", () => {
             if (contador <= 0) {
                 imprimir.removeChild(listaCarrito);
+                borrarElementoStorage();
             } else {
                 contador--;
                 cantidad.textContent = contador;
@@ -140,6 +151,7 @@ function cargarListado() {
         let eliminarObjetoDeLista = document.getElementById(`eliminar${dulces.id}`);
         eliminarObjetoDeLista.addEventListener("click", () => {
             imprimir.removeChild(listaCarrito);
+            borrarElementoStorage();
         });
     });
     return listadoCarrito;
