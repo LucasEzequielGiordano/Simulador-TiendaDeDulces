@@ -38,7 +38,7 @@ function elementosEnHTML(dulces) {
                 });
                 carrito[index].aumentar;
             } else {
-                carrito.push(new Dulce(dulces.id, dulces.nombre, dulces.precio, dulces.images));
+                carrito.push(new Dulce(dulces.id, dulces.nombre, dulces.precio, dulces.images, 1));
             }
             localStorage.setItem("carritoEnStorage", JSON.stringify(carrito));
             let imprimir = document.getElementById("divCarrito");
@@ -46,7 +46,7 @@ function elementosEnHTML(dulces) {
             listaCarrito.innerHTML = `
             <li>${dulces.nombre}</li>
             <li><button class="btn btn-danger" id="restar${dulces.id}"> - </button>
-            <span>Cantidad: <span id="cantidad${dulces.id}">${dulces.cantidad}</span></span>
+            <span>Cantidad: <span id="cantidad${dulces.id}">1</span></span>
             <button class="btn btn-success" id="aumentar${dulces.id}"> + </button></li>
             <li id="valorTotal${dulces.precio}">$${dulces.precio}</li>
             <li><button class="btn btn-danger" id="eliminar${dulces.id}">ELIMINAR</button></li>

@@ -13,12 +13,12 @@
 
 // Declaracion de objetos
 class Dulce {
-    constructor(id, nombre, precio, images) {
+    constructor(id, nombre, precio, images, cantidad) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.images = images;
-        this.cantidad = 1;
+        this.cantidad = cantidad;
     }
 }
 
