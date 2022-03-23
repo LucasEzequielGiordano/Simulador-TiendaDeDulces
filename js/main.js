@@ -42,11 +42,11 @@ function actualizarPrecioTotalDulce(dulce) {
 // Recibo los datos almacenados en storage
 // Devuelvo el listado
 function obtenerDatosStorage() {
-    let listadoCarrito = JSON.parse(localStorage.getItem("carritoEnStorage"));
-    if (listadoCarrito == null) {
-        return [];
-    }
+    let listadoCarrito = JSON.parse(localStorage.getItem("carritoEnStorage")) || [];
     return listadoCarrito;
+    // if (listadoCarrito == null) {
+    //     return [];
+    // }
 }
 
 // Recibo la nueva lista a modificar y la meto en el carrito

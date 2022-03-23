@@ -21,7 +21,7 @@
     </header>
     <main>
         <div id="contenedor" style="display: flex; flex-wrap: wrap; margin-left: 5%"></div>
-        <div class="text-center" id="carrito">Productos Del Carrito:</div>
+        <h2 class="text-center" id="carrito">Productos Del Carrito:</h2><br>
         <table>
             <thead>
                 <tr>
@@ -32,11 +32,16 @@
                 </tr>
             </thead>
             <!-- Imprimo el carrito -->
-
-            <tbody class="divCarrito" id="divCarrito">
-            </tbody>
-
+            <tbody class="divCarrito" id="divCarrito"></tbody>
         </table>
+        <br>
+        <hr>
+        <div>
+            <ul class="ulFinal">
+                <li id="liCompraFinal">Valor Total Final De La Compra: $</li>
+                <li><button id="btnCompraFinal" class="btn btn-warning">COMPRAR</button></li>
+            </ul>
+        </div>
     </main>
     <script src="js/main.js"></script>
     <script src="js/dom.js"></script>
