@@ -14,10 +14,20 @@ h1 {
     text-align: center;
 }
 
-#contenedor {
-    height: 100%;
-    width: 100%;
+.containerHeader {
     display: flex;
+    flex-direction: row;
+}
+
+.containerHeader div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#contenedor {
+    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 5%;
 }
@@ -26,15 +36,13 @@ img {
     width: 200px;
 }
 
-#carrito {
-    font-size: 25px;
+header {
+    width: 100%;
 }
 
-.contenedorCantidad {
-    display: flex;
-    justify-content: space-evenly;
-    height: 50px;
-    align-items: center;
+
+#carrito {
+    font-size: 25px;
 }
 
 ul {
@@ -43,14 +51,62 @@ ul {
     list-style: none;
 }
 
-#divCarrito ul{
+table {
     width: 100%;
     display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    list-style: none;
+    justify-content: center;
+    flex-direction: column;
 }
 
-li {
+thead tr {
     display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
+
+.divCarrito {
+    flex-direction: row;
+}
+
+.divCarrito tr{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* tbody.divCarrito {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+tbody.divCarrito tr {
+    display: flex;
+    flex-direction: column;
+}
+
+tbody tr td {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+} */
