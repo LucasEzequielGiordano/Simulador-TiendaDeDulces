@@ -22,14 +22,12 @@ function crearStringCarrito(listaCarrito) {
     let string = "";
     for (const dulce of listaCarrito) {
         string += `
-        <ul>
-        <li scope="row">${dulce.nombre}</li>
-        <li scope="row"><button class="btn btn-danger" id="restar${dulce.id}"> - </button>
-        <span>Cantidad: <span id="cantidad${dulce.id}">1</span></span>
-        <button class="btn btn-success" id="aumentar${dulce.id}"> + </button></li>
-        <li scope="row" id="valorTotal${dulce.precio}">$${dulce.precio}</li>
-        <li scope="row" ><button class="btn btn-danger" id="eliminar${dulce.id}">ELIMINAR</button></li>
-        </ul>
+        <div class="row row-cols-12">
+              <div class="col">${dulce.nombre}</div>
+              <div class="col"><button class="btn btn-danger" id="restar${dulce.id}"> - </button><span>Cantidad: <span id="cantidad${dulce.id}">1</span></span><button class="btn btn-success" id="aumentar${dulce.id}"> + </button></div>
+              <div class="col" id="valorTotal${dulce.precio}">$${dulce.precio}</div>
+              <div class="col"><button class="btn btn-danger" id="eliminar${dulce.id}">ELIMINAR</button></div>
+        </div>
         `;
     }
     return string;
@@ -49,6 +47,7 @@ function imprimirDivCarrito() {
     let imprimir = document.getElementById("divCarrito");
     imprimir.textContent = "";
     let listaCarrito = document.createElement("div");
+    listaCarrito.setAttribute("class", "container-fluid");
     listaCarrito.innerHTML = crearStringCarrito(obtenerDatosStorage());
     imprimir.appendChild(listaCarrito);
     agregarAlCarrito();

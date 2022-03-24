@@ -66,15 +66,12 @@ thead tr {
     justify-content: space-around;
 }
 
-.divCarrito {
-    flex-direction: row;
-}
-
-.divCarrito tr {
+div.col {
+    width: 100%;
     display: flex;
-    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
     flex-wrap: wrap;
-    justify-content: space-around;
 }
 
 .ulFinal {
