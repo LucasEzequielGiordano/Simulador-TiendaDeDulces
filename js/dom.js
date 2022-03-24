@@ -1,7 +1,7 @@
 // Declaracion de funciones
 // Recorro el array "dulces" e imprimo las cards 
 function crearStringCatalogo() {
-    let string = ""
+    let string = "";
     for (const dulce of dulces) {
         string += `
         <div class="card d-flex .justify-content-center" style="width: 18rem;">
@@ -12,14 +12,14 @@ function crearStringCatalogo() {
                 <button href="#" class="btn btn-dark" id="agregar${dulce.id}">Agregar Al Carrito</button>
             </div>
         </div>
-        `
+        `;
     }
     return string;
 }
 
 // Recorro el array "listaCarrito" e imprimo los valores del dulce
 function crearStringCarrito(listaCarrito) {
-    let string = ""
+    let string = "";
     for (const dulce of listaCarrito) {
         string += `
         <ul>
@@ -30,9 +30,9 @@ function crearStringCarrito(listaCarrito) {
         <li scope="row" id="valorTotal${dulce.precio}">$${dulce.precio}</li>
         <li scope="row" ><button class="btn btn-danger" id="eliminar${dulce.id}">ELIMINAR</button></li>
         </ul>
-        `
+        `;
     }
-    return string
+    return string;
 }
 
 // Funcion para mostrar las cards con los "dulces"
@@ -41,20 +41,19 @@ function catalogoDulces() {
     let card = document.createElement("div");
     card.innerHTML = crearStringCatalogo();
     contenedor.appendChild(card);
-    agregarAlCarrito()
-    imprimirDivCarrito()
+    imprimirDivCarrito();
 }
 
 // Funcion para imprimir el carrito
 function imprimirDivCarrito() {
     let imprimir = document.getElementById("divCarrito");
-    imprimir.textContent = ""
+    imprimir.textContent = "";
     let listaCarrito = document.createElement("div");
-    listaCarrito.innerHTML = crearStringCarrito(obtenerDatosStorage())
+    listaCarrito.innerHTML = crearStringCarrito(obtenerDatosStorage());
     imprimir.appendChild(listaCarrito);
-    agregarAlCarrito()
-    operacionesCarrito()
-    eliminarDelCarrito()
+    agregarAlCarrito();
+    operacionesCarrito();
+    eliminarDelCarrito();
 }
 
 // Declaro un evento "Click" para sumar unidades de dulces al carrito
@@ -62,21 +61,29 @@ function agregarAlCarrito() {
     for (const dulce of dulces) {
         let agregarAlCarrito = document.getElementById(`agregar${dulce.id}`);
         agregarAlCarrito.addEventListener("click", () => {
-            let obtenerDatos = obtenerDatosStorage()
-            if (buscarDulceStorage(dulce.id, obtenerDatos)) {} else {
-                obtenerDatos.push(dulce)
-                modificarDatosStorage(obtenerDatos)
-                imprimirDivCarrito()
-                operacionesCarrito()
-                eliminarDelCarrito()
+            let obtenerDatos = obtenerDatosStorage();
+            if (buscarDulceStorage(dulce.id, obtenerDatos)) {
+                return true
+            } else {
+                Toastify({
+                    text: `Se agregó "${dulce.nombre}" al carrito!`,
+                    duration: 3000,
+                    gravity: 'top',
+                    position: 'right'
+                }).showToast();
+                obtenerDatos.push(dulce);
+                modificarDatosStorage(obtenerDatos);
+                imprimirDivCarrito();
+                operacionesCarrito();
+                eliminarDelCarrito();
             }
-        })
+        });
     }
 }
 
 // Declaro las operaciones de cantidad en el carrito
 function operacionesCarrito() {
-    let listaCarrito = obtenerDatosStorage()
+    let listaCarrito = obtenerDatosStorage();
     // Recorro el array  "listaCarrito" y por cada evento "click"
     // Sumo una unidad a la cantidad del dulce en carrito
     for (const dulce of listaCarrito) {
@@ -84,11 +91,17 @@ function operacionesCarrito() {
         let cantidad = document.getElementById(`cantidad${dulce.id}`);
         let valorTotal = document.getElementById(`valorTotal${dulce.precio}`);
         aumentar.addEventListener("click", () => {
-            agregarUnidadDulce(dulce)
-            actualizarPrecioTotalDulce(dulce)
-            modificarDatosStorage(listaCarrito)
-            cantidad.textContent = dulce.cantidad
-            valorTotal.textContent = dulce.precioTotal
+            agregarUnidadDulce(dulce);
+            actualizarPrecioTotalDulce(dulce);
+            modificarDatosStorage(listaCarrito);
+            cantidad.textContent = dulce.cantidad;
+            valorTotal.textContent = dulce.precioTotal;
+            Toastify({
+                text: `Se agregó otro "${dulce.nombre}" al carrito`,
+                duration: 3000,
+                gravity: 'top',
+                position: 'right'
+            }).showToast();
         });
     }
 
@@ -101,13 +114,19 @@ function operacionesCarrito() {
         restar.addEventListener("click", () => {
             if (dulce.cantidad == 1) {
                 borrarDulceStorage(dulce.id, listaCarrito);
-                imprimirDivCarrito()
+                imprimirDivCarrito();
             } else {
                 quitarUnidadDulce(dulce)
-                actualizarPrecioTotalDulce(dulce)
-                modificarDatosStorage(listaCarrito)
-                cantidad.textContent = dulce.cantidad
-                valorTotal.textContent = dulce.precioTotal
+                actualizarPrecioTotalDulce(dulce);
+                modificarDatosStorage(listaCarrito);
+                Toastify({
+                    text: `Se eliminó un "${dulce.nombre}" del carrito`,
+                    duration: 3000,
+                    gravity: 'top',
+                    position: 'right'
+                }).showToast();
+                cantidad.textContent = dulce.cantidad;
+                valorTotal.textContent = dulce.precioTotal;
             }
         });
     }
@@ -120,10 +139,22 @@ function eliminarDelCarrito() {
         let eliminarObjetoDeLista = document.getElementById(`eliminar${dulce.id}`);
         eliminarObjetoDeLista.addEventListener("click", () => {
             borrarDulceStorage(dulce.id, listaCarrito);
-            imprimirDivCarrito()
+            imprimirDivCarrito();
+            Toastify({
+                text: `Se eliminó "${dulce.nombre}" del carrito!`,
+                duration: 3000,
+                gravity: 'top',
+                position: 'right'
+            }).showToast();
         });
     }
 }
 
+// function valorTotalCarrito() {
+//     return dulce.reduce((total, elemento) => total + elemento.precioTotal, 0);
+// }
+
+
+
 // INVOCACION DE FUNCIONES
-catalogoDulces()
+catalogoDulces();

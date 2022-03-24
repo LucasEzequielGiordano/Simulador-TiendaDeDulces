@@ -22,6 +22,8 @@ h1 {
 .containerHeader div {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
 }
 
@@ -71,6 +73,7 @@ thead tr {
 .divCarrito tr {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 

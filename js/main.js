@@ -16,12 +16,15 @@ let dulces = []
 dulces.push(new Dulce(0, "Dos Corazones", 80, "./images/Dos-Corazones.jpg"));
 dulces.push(new Dulce(1, "Mogul Gomitas", 60, "./images/Mogul-Gomitas.jpg"));
 dulces.push(new Dulce(2, "Ferrero Rocher", 250, "./images/Ferrero-Rocher.jpg"));
-dulces.push(new Dulce(3, "Shot Bloque Chocolate", 160, "./images/Shot-Bloque-Chocolate.webp"));
-dulces.push(new Dulce(4, "Kinder Chocolate", 255, "./images/Kinder-Chocolate.jpeg"));
+dulces.push(new Dulce(3, "Shot Bloque", 160, "./images/Shot-Bloque-Chocolate.webp"));
+dulces.push(new Dulce(4, "Kinder", 255, "./images/Kinder-Chocolate.jpeg"));
 dulces.push(new Dulce(5, "Jorgito Alfajor", 85, "./images/Jorgito-Alfajor.jpg"));
-dulces.push(new Dulce(6, "Milka Chocolate", 310, "./images/Milka-Chocolate.png"));
+dulces.push(new Dulce(6, "Milka", 310, "./images/Milka-Chocolate.png"));
 dulces.push(new Dulce(7, "Pepitos Alfajor", 150, "./images/Pepitos-Alfajor.jpg"));
 dulces.push(new Dulce(8, "Bon o Bon", 55, "./images/Bon-o-Bon.jpg"));
+dulces.push(new Dulce(9, "Aguila Amargo", 430, "./images/aguilaChocolate.jpg"));
+dulces.push(new Dulce(10, "Rocklets", 97, "./images/rocklets.webp"));
+dulces.push(new Dulce(11, "Hamlet", 52, "./images/hamlet.webp"));
 
 // Declaracion de metodos
 // Funcion para agregar una unidad en la cantidad del dulce
@@ -58,7 +61,7 @@ function modificarDatosStorage(listaCarrito) {
 // Devuelvo boolean si encuentra ese ID en la lista
 function buscarDulceStorage(id, listaCarrito) {
     for (const dulce of listaCarrito) {
-        if(dulce.id == id) {
+        if (dulce.id == id) {
             return true;
         }
     }
