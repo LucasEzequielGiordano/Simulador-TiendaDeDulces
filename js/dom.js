@@ -54,6 +54,7 @@ function imprimirDivCarrito() {
     operacionesCarrito();
     eliminarDelCarrito();
     sumarValorFinalCarrito();
+    comprarCarrito()
 }
 
 // Declaro un evento "Click" para sumar unidades de dulces al carrito
@@ -146,20 +147,37 @@ function eliminarDelCarrito() {
                 position: 'right'
             }).showToast();
             borrarDulceStorage(dulce.id, listaCarrito);
-            imprimirDivCarrito();
             sumarValorFinalCarrito();
+            imprimirDivCarrito();
         });
     }
+}
+
+function comprarCarrito() {
+    let botonComprar = document.getElementById("btnCompraFinal");
+    botonComprar.addEventListener("click", () => {
+        Swal.fire({
+            title: `¡Felicitaciones!`,
+            text: `Los productos ya han sido adquiridos`,
+            icon: 'success',
+            confirmButtonText: '🛒'
+        });
+        let imprimir = document.getElementById("divCarrito");
+        imprimir.textContent = "";
+        let obtenerDatos = obtenerDatosStorage();
+        obtenerDatos = []
+        modificarDatosStorage(obtenerDatos);
+    });
 }
 
 // Funcion para sumar y restar el valor final del carrito
 function sumarValorFinalCarrito() {
     let datosCarrito = obtenerDatosStorage();
     let compraFinal = document.getElementById("spanCompraFinal");
-    let precioTotal = 0
+    let precioTotal = 0;
     for (const item of datosCarrito) {
-        precioTotal += item.precioTotal
-        compraFinal.textContent = precioTotal
+        precioTotal += item.precioTotal;
+        compraFinal.textContent = precioTotal;
     }
 }
 
