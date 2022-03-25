@@ -73,8 +73,7 @@ function agregarAlCarrito() {
                 obtenerDatos.push(dulce);
                 modificarDatosStorage(obtenerDatos);
                 imprimirDivCarrito();
-                operacionesCarrito();
-                eliminarDelCarrito();
+                sumarValorFinalCarrito()
             }
         });
     }
@@ -90,17 +89,17 @@ function operacionesCarrito() {
         let cantidad = document.getElementById(`cantidad${dulce.id}`);
         let valorTotal = document.getElementById(`valorTotal${dulce.precio}`);
         aumentar.addEventListener("click", () => {
-            agregarUnidadDulce(dulce);
-            actualizarPrecioTotalDulce(dulce);
-            modificarDatosStorage(listaCarrito);
-            cantidad.textContent = dulce.cantidad;
-            valorTotal.textContent = dulce.precioTotal;
             Toastify({
                 text: `Se agregó otro "${dulce.nombre}" al carrito`,
                 duration: 3000,
                 gravity: 'top',
                 position: 'right'
             }).showToast();
+            agregarUnidadDulce(dulce);
+            actualizarPrecioTotalDulce(dulce);
+            modificarDatosStorage(listaCarrito);
+            cantidad.textContent = dulce.cantidad;
+            valorTotal.textContent = dulce.precioTotal;
         });
     }
 
@@ -118,14 +117,14 @@ function operacionesCarrito() {
                 quitarUnidadDulce(dulce)
                 actualizarPrecioTotalDulce(dulce);
                 modificarDatosStorage(listaCarrito);
+                cantidad.textContent = dulce.cantidad;
+                valorTotal.textContent = dulce.precioTotal;
                 Toastify({
                     text: `Se eliminó un "${dulce.nombre}" del carrito`,
                     duration: 3000,
                     gravity: 'top',
                     position: 'right'
                 }).showToast();
-                cantidad.textContent = dulce.cantidad;
-                valorTotal.textContent = dulce.precioTotal;
             }
         });
     }
@@ -137,22 +136,27 @@ function eliminarDelCarrito() {
     for (const dulce of listaCarrito) {
         let eliminarObjetoDeLista = document.getElementById(`eliminar${dulce.id}`);
         eliminarObjetoDeLista.addEventListener("click", () => {
-            borrarDulceStorage(dulce.id, listaCarrito);
-            imprimirDivCarrito();
             Toastify({
                 text: `Se eliminó "${dulce.nombre}" del carrito!`,
                 duration: 3000,
                 gravity: 'top',
                 position: 'right'
             }).showToast();
+            borrarDulceStorage(dulce.id, listaCarrito);
+            imprimirDivCarrito();
         });
     }
 }
 
-// function valorTotalCarrito() {
-//     return dulce.reduce((total, elemento) => total + elemento.precioTotal, 0);
-// }
-
+function sumarValorFinalCarrito() {
+    let obtenerCarritoPrecio = obtenerDatosStorage();
+    let compraFinal = document.getElementById("spanCompraFinal");
+    let precioTotal = 0;
+    for (item of obtenerCarritoPrecio) {
+        compraFinal += item.precioFinal;
+    }
+    // return compraFinal.textContent = obtenerCarritoPrecio;
+}
 
 
 // INVOCACION DE FUNCIONES
