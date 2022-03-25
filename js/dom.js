@@ -53,6 +53,7 @@ function imprimirDivCarrito() {
     agregarAlCarrito();
     operacionesCarrito();
     eliminarDelCarrito();
+    sumarValorFinalCarrito();
 }
 
 // Declaro un evento "Click" para sumar unidades de dulces al carrito
@@ -73,7 +74,7 @@ function agregarAlCarrito() {
                 obtenerDatos.push(dulce);
                 modificarDatosStorage(obtenerDatos);
                 imprimirDivCarrito();
-                sumarValorFinalCarrito()
+                sumarValorFinalCarrito();
             }
         });
     }
@@ -100,6 +101,7 @@ function operacionesCarrito() {
             modificarDatosStorage(listaCarrito);
             cantidad.textContent = dulce.cantidad;
             valorTotal.textContent = dulce.precioTotal;
+            sumarValorFinalCarrito();
         });
     }
 
@@ -119,6 +121,7 @@ function operacionesCarrito() {
                 modificarDatosStorage(listaCarrito);
                 cantidad.textContent = dulce.cantidad;
                 valorTotal.textContent = dulce.precioTotal;
+                sumarValorFinalCarrito();
                 Toastify({
                     text: `Se eliminó un "${dulce.nombre}" del carrito`,
                     duration: 3000,
@@ -144,20 +147,21 @@ function eliminarDelCarrito() {
             }).showToast();
             borrarDulceStorage(dulce.id, listaCarrito);
             imprimirDivCarrito();
+            sumarValorFinalCarrito();
         });
     }
 }
 
+// Funcion para sumar y restar el valor final del carrito
 function sumarValorFinalCarrito() {
-    let obtenerCarritoPrecio = obtenerDatosStorage();
+    let datosCarrito = obtenerDatosStorage();
     let compraFinal = document.getElementById("spanCompraFinal");
-    let precioTotal = 0;
-    for (item of obtenerCarritoPrecio) {
-        compraFinal += item.precioFinal;
+    let precioTotal = 0
+    for (const item of datosCarrito) {
+        precioTotal += item.precioTotal
+        compraFinal.textContent = precioTotal
     }
-    // return compraFinal.textContent = obtenerCarritoPrecio;
 }
-
 
 // INVOCACION DE FUNCIONES
 catalogoDulces();
