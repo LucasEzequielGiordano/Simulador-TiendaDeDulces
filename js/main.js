@@ -6,7 +6,7 @@ class Dulce {
         this.precio = precio;
         this.images = images;
         this.cantidad = 1;
-        this.precioTotal = this.precio;
+        this.precioTotal = precio;
     }
 }
 
@@ -45,11 +45,7 @@ function actualizarPrecioTotalDulce(dulce) {
 // Recibo los datos almacenados en storage
 // Devuelvo el listado
 function obtenerDatosStorage() {
-    let listadoCarrito = JSON.parse(localStorage.getItem("carritoEnStorage")) || [];
-    return listadoCarrito;
-    // if (listadoCarrito == null) {
-    //     return [];
-    // }
+    return listadoCarrito = JSON.parse(localStorage.getItem("carritoEnStorage")) || [];
 }
 
 // Recibo la nueva lista a modificar y la meto en el carrito
