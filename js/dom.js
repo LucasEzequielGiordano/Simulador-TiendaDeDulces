@@ -24,7 +24,7 @@ function crearStringCarrito(listaCarrito) {
         string += `
         <div class="row row-cols-12">
               <div class="col">${dulce.nombre}</div>
-              <div class="col"><button class="btn btn-danger" id="restar${dulce.id}"> - </button><span>Cantidad: <span id="cantidad${dulce.id}">1</span></span><button class="btn btn-success" id="aumentar${dulce.id}"> + </button></div>
+              <div class="col"><button class="btn btn-danger" id="restar${dulce.id}"> - </button><span>Cantidad: <span id="cantidad${dulce.id}">${dulce.cantidad}</span></span><button class="btn btn-success" id="aumentar${dulce.id}"> + </button></div>
               <div class="col" id="valorTotal${dulce.precio}">$${dulce.precio}</div>
               <div class="col"><button class="btn btn-danger" id="eliminar${dulce.id}">ELIMINAR</button></div>
         </div>
