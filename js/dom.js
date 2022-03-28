@@ -160,7 +160,7 @@ function comprarCarrito() {
             title: `¡Felicitaciones!`,
             text: `Los productos ya han sido adquiridos`,
             icon: 'success',
-            confirmButtonText: '🛒'
+            confirmButtonText: '📦'
         });
         let imprimir = document.getElementById("divCarrito");
         imprimir.textContent = "";
