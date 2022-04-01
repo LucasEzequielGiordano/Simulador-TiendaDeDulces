@@ -154,19 +154,39 @@ function eliminarDelCarrito() {
 }
 
 function comprarCarrito() {
-    let botonComprar = document.getElementById("btnCompraFinal");
-    botonComprar.addEventListener("click", () => {
-        Swal.fire({
-            title: `¡Felicitaciones!`,
-            text: `¡Los productos ya han sido adquiridos!`,
-            icon: 'success',
-            confirmButtonText: '📦'
-        });
+    document.getElementById('contact-form').addEventListener('submit', function (event) {
         let imprimir = document.getElementById("divCarrito");
         imprimir.textContent = "";
         let obtenerDatos = obtenerDatosStorage();
         obtenerDatos = [];
         modificarDatosStorage(obtenerDatos);
+        emailjs.init('o1BHjOgmyefCbnFo3');
+        event.preventDefault();
+        emailjs.sendForm('LucasGiordano-CoderHouse', 'template_g6hfbbt', this)
+            .then(function () {
+                Swal.fire({
+                    title: `¡Felicitaciones!`,
+                    text: `¡Los productos ya están siendo preparandos, nos comunicaremos a la brevedad!`,
+                    icon: 'success',
+                    confirmButtonText: '📦'
+                }), {
+                    durations: {
+                        success: 3000
+                    }
+                }
+            }, function (error) {
+                Swal.fire({
+                    title: `¡OH NO!`,
+                    text: `Ocurrió un error con su carrito, intente más tarde`,
+                    icon: 'error',
+                    confirmButtonText: '📦'
+                }), {
+                    durations: {
+                        alert: 3000
+                    }
+                }
+                console.log('Mail status: failed', error);
+            });
     });
 }
 

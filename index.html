@@ -39,12 +39,20 @@
         <hr>
         <div>
             <ul class="ulFinal">
-                <li>Valor Total Final De La Compra: $<span id="spanCompraFinal">0</span></li>
-                <li><button id="btnCompraFinal" class="btn btn-warning">COMPRAR</button></li>
+                <form id="contact-form">
+                    <li>Valor Total Final De La Compra: $<span id="spanCompraFinal">0</span></li>
+                    <label for="to_name">Nombre<span>*</span></label>
+                    <input type="text" name="to_name" id="to_name" placeholder="Inserte su nombre" required>
+                    <label for="to_email">Mail<span>*</span></label>
+                    <input type="email" name="to_email" id="to_email" placeholder="ejemplo@mail.com" required>
+                    <input type="submit" id="button btnCompraFinal" class="button text-center btn btn-warning"
+                        value="ENVIAR">
+                </form>
             </ul>
         </div>
     </main>
     <script src="js/main.js"></script>
+    <script src="js/emailjs.js"></script>
     <script src="js/dom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
