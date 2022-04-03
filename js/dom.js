@@ -2,7 +2,7 @@
 // Recorro el array "dulces" e imprimo las cards 
 async function crearStringCatalogo() {
     let string = "";
-    let res = await fetch('http://productos.json')
+    let res = await fetch('http://127.0.0.1:5500/productos.json')
     let data = await res.json()
     for (const dulce of data) {
         string += `
@@ -65,7 +65,7 @@ function imprimirDivCarrito() {
 
 // Declaro un evento "Click" para sumar unidades de dulces al carrito
 function agregarAlCarrito() {
-    fetch('http://productos.json')
+    fetch('http://127.0.0.1:5500/productos.json')
         .then((res) => res.json()).then((data) => {
             for (const dulce of data) {
                 let agregarAlCarrito = document.getElementById(`agregar${dulce.id}`);
