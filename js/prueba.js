@@ -1,16 +1,16 @@
 // Declaracion de funciones
 // Recorro el array "dulces" e imprimo las cards 
+let url = "./productos.json"
+fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+        crearStringCatalogo(data)
+    })
 
 function crearStringCatalogo() {
     let string = "";
-
-    let url = "http://127.0.0.1:5500/productos.json"
-    fetch(url)
-        .then((res) => res.json())
-        .then((data) => {
-
-            for (const dulce of data) {
-                string += `
+    for (const dulce of dulces) {
+        string += `
         <div class="card d-flex .justify-content-center" style="width: 18rem;">
             <img src="${dulce.images}" class="card-img-top" alt=" ">
             <div class="card-body d-flex flex-column justify-content-center">
@@ -20,10 +20,8 @@ function crearStringCatalogo() {
             </div>
         </div>
         `;
-            }
-            console.log(string)
-            return string;
-        })
+    }
+    return string;
 }
 
 // Recorro el array "listaCarrito" e imprimo los valores del dulce
@@ -70,26 +68,23 @@ function imprimirDivCarrito() {
 function agregarAlCarrito() {
     for (const dulce of dulces) {
         let agregarAlCarrito = document.getElementById(`agregar${dulce.id}`);
-        if (agregarAlCarrito) {
-
-            addEventListener("click", () => {
-                let obtenerDatos = obtenerDatosStorage();
-                if (buscarDulceStorage(dulce.id, obtenerDatos)) {
-                    return true
-                } else {
-                    obtenerDatos.push(dulce);
-                    modificarDatosStorage(obtenerDatos);
-                    imprimirDivCarrito();
-                    sumarValorFinalCarrito();
-                    Toastify({
-                        text: `¡Se agregó "${dulce.nombre}" al carrito!`,
-                        duration: 3000,
-                        gravity: 'top',
-                        position: 'right'
-                    }).showToast();
-                }
-            });
-        }
+        agregarAlCarrito.addEventListener("click", () => {
+            let obtenerDatos = obtenerDatosStorage();
+            if (buscarDulceStorage(dulce.id, obtenerDatos)) {
+                return true
+            } else {
+                obtenerDatos.push(dulce);
+                modificarDatosStorage(obtenerDatos);
+                imprimirDivCarrito();
+                sumarValorFinalCarrito();
+                Toastify({
+                    text: `¡Se agregó "${dulce.nombre}" al carrito!`,
+                    duration: 3000,
+                    gravity: 'top',
+                    position: 'right'
+                }).showToast();
+            }
+        });
     }
 }
 
