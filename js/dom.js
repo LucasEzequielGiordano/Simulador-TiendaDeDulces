@@ -1,6 +1,6 @@
 // Declaracion de funciones
 // Recorro el array "dulces" e imprimo las cards 
-let url = "./productos.json"
+let url = "http://127.0.0.1:5500/productos.json"
 fetch(url)
     .then((res) => res.json())
     .then((data) => {

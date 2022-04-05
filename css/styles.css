@@ -78,3 +78,12 @@ div.col {
     display: flex;
     align-items: center;
 }
+
+#contact-form {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 2%;
+}
